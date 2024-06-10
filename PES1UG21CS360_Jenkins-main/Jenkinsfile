@@ -1,38 +1,29 @@
+https://github.com/Nandanks03/PES1UG21CS360_Jenkins/tree/main/PES1UG21CS360_Jenkins-main
 pipeline {
     agent any
-
     stages {
-        stage('Clone repository') {
+        stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
-                userRemoteConfigs: [[url: 'https://github.com/MalikRehan08/PES1UG21CS319_Jenkins.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Nandanks03/PES1UG21CS360_Jenkins/tree/main/PES1UG21CS360_Jenkins-main']]])
             }
         }
-
         stage('Build') {
             steps {
-                build 'PES1UG21CS319-1'
-                sh 'g++ main.cpp -o output'
+                echo 'Building...'
+                // Add your build steps here
             }
         }
-
         stage('Test') {
             steps {
-                sh './output'
+                echo 'Testing...'
+                // Add your test steps here
             }
         }
-
         stage('Deploy') {
             steps {
-                echo 'deploy'
+                echo 'Deploying...'
+                // Add your deploy steps here
             }
-        }
-    }
-
-    post {
-        failure {
-            error 'Pipeline failed'
         }
     }
 }
